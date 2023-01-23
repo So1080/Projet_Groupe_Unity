@@ -419,10 +419,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc87e5b18bb9449bfad94b77aaf62f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1186832824}
   x: 0
   y: 14
   z: 9.5
+--- !u!1 &1116547993 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1023840493308638340, guid: 497a45091ca234b97a10b2484e235b8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3401209558257958956}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1186832824 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2095388967074739081, guid: afd160e37dfd14922b86c66d095a0f49,
@@ -528,6 +534,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1903597907482693600, guid: afd160e37dfd14922b86c66d095a0f49,
+        type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1903597907482693600, guid: afd160e37dfd14922b86c66d095a0f49,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1186832824}
+    - target: {fileID: 1903597907482693607, guid: afd160e37dfd14922b86c66d095a0f49,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 2095388967074739081, guid: afd160e37dfd14922b86c66d095a0f49,
         type: 3}
       propertyPath: m_Name
@@ -588,7 +609,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 101940774113410604, guid: afd160e37dfd14922b86c66d095a0f49, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: afd160e37dfd14922b86c66d095a0f49, type: 3}
 --- !u!1001 &3401209558257958956
 PrefabInstance:
@@ -598,13 +620,71 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 353201810, guid: 497a45091ca234b97a10b2484e235b8c, type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 353201810, guid: 497a45091ca234b97a10b2484e235b8c, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1186832824}
+    - target: {fileID: 353201810, guid: 497a45091ca234b97a10b2484e235b8c, type: 3}
+      propertyPath: soldier
+      value: 
+      objectReference: {fileID: 1116547993}
+    - target: {fileID: 353201810, guid: 497a45091ca234b97a10b2484e235b8c, type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1116547993}
+    - target: {fileID: 353201810, guid: 497a45091ca234b97a10b2484e235b8c, type: 3}
+      propertyPath: hitPoints
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 353201810, guid: 497a45091ca234b97a10b2484e235b8c, type: 3}
+      propertyPath: enemyLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 944151197, guid: 497a45091ca234b97a10b2484e235b8c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 944151197, guid: 497a45091ca234b97a10b2484e235b8c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 140178217272563452, guid: 497a45091ca234b97a10b2484e235b8c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 140178217272563452, guid: 497a45091ca234b97a10b2484e235b8c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 140178217272563452, guid: 497a45091ca234b97a10b2484e235b8c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 140178217272563452, guid: 497a45091ca234b97a10b2484e235b8c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 140178217272563452, guid: 497a45091ca234b97a10b2484e235b8c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1023840493308638340, guid: 497a45091ca234b97a10b2484e235b8c,
         type: 3}
       propertyPath: m_Name
       value: EnemySoldier
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023840493308638341, guid: 497a45091ca234b97a10b2484e235b8c,
+        type: 3}
+      propertyPath: m_Speed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1023840493308638342, guid: 497a45091ca234b97a10b2484e235b8c,
         type: 3}

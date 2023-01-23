@@ -5,177 +5,96 @@ using System.Numerics;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AttackWarrior : MonoBehaviour
+public class AttackWarrior : Player
 {
-    //[SerializeField] public NavMeshAgent agent;
-    [SerializeField] public Rigidbody rb;
-    [SerializeField] public Animator animator;
-    //[SerializeField] public Animator enemyAnimator;
-
-    //varaibles used to attack
-    //private int rotSpeed = 40000;
-    private float cooldownHit = 1;
-    private float cooldownJump = 5;
-    private float cooldownSpin = 5;
-    float lastHit;
-    float lastJump;
-    float lastSpin;
-    bool spin = false;
-
-    //variables used to touch enemy
     public Transform attackpoint;
     public Transform blastpoint;
     public float attackRange = 1;
     public float jumpRange = 3;
-    public LayerMask enemyLayer;
-    public int damageHit = 5;
-    public int damageJump = 2;
-    public int damageSpin = 1;
 
     //health
-    private int maxHealth = 100;
-    private int health;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        //agent = GetComponent<NavMeshAgent>();
-        //animator = GetComponentInChildren<Animator>();
-        lastHit = 0;
-        lastJump = 0;
-        lastSpin = 0;
-
+        maxHealth = 100;
         health = maxHealth;
+        coolDownHit1 = 1;
+        coolDownHit2 = 5;
+        coolDownHit3 = 5;
+        damageHit1 = 5;
+        damageHit2 = 2;
+        damageHit3 = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (health > 0)
         {
-            AttackSword();
-        }
+            if (Input.GetKeyDown(KeyCode.Space)) AttackSword();
+           
+            if (Input.GetKeyDown(KeyCode.J)) AttackJump();
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            AttackJump();
-        }
+            if (Input.GetKeyDown(KeyCode.S)) AttackSpin();
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            StartCoroutine(AttackSpin());
+            horInput = Input.GetAxis("Horizontal");
+            verInput = Input.GetAxis("Vertical");
+            animator.SetFloat("ver_input", verInput);
+            animator.SetFloat("hor_input", horInput);
 
+            run(horInput, verInput);
+
+            LookAtMouse();
         }
     }
 
     void AttackSword()
     {
-        if (Time.time - lastHit < cooldownHit && lastHit != 0)
-        {
-            UnityEngine.Debug.Log("WAIT");
-            return;
-        }
-        UnityEngine.Debug.Log("ATT ACK");
+
+        if (coolDown(lastHit1, coolDownHit1)) return;
+
+        UnityEngine.Debug.Log("ATTACK");
         animator.SetTrigger("Attack");
 
-        Collider[] hitEnemies = Physics.OverlapSphere(attackpoint.position, attackRange, enemyLayer);
+        InflictDamage(attackpoint, attackRange, enemyLayer, damageHit1);
 
-        foreach(Collider enemy in hitEnemies)
-        {
-            enemy.GetComponent<ActionEnemy>().TakeDamage(damageHit);
-            UnityEngine.Debug.Log("Swing hit");
-
-            //enemyAnimator.SetTrigger("hit");
-        }
-
-        lastHit = Time.time;
+        lastHit1 = Time.time;
     }
 
     void AttackJump()
     {
-        if (Time.time - lastJump < cooldownJump && lastJump != 0)
-        {
-            UnityEngine.Debug.Log("WAIT");
-            return;
-        }
+
+        if (coolDown(lastHit2, coolDownHit2)) return;
+
         UnityEngine.Debug.Log("JUMP");
         animator.SetTrigger("Jump");
 
-        Collider[] hitEnemies = Physics.OverlapSphere(attackpoint.position, attackRange, enemyLayer);
+        InflictDamage(attackpoint, attackRange, enemyLayer, damageHit2);
+
         Collider[] blastEnemies = Physics.OverlapSphere(blastpoint.position, jumpRange, enemyLayer);
 
-        foreach (Collider enemy in hitEnemies)
+        foreach (Collider enemy in blastEnemies)
         {
-            enemy.GetComponent<ActionEnemy>().TakeDamage(damageJump);
-            UnityEngine.Debug.Log("Jump hit");
-            enemy.GetComponent<ActionEnemy>().PushBack();
+            UnityEngine.Debug.Log("Blast hit");
+            enemy.GetComponent<NPC>().PushBack();
 
 
             //enemyAnimator.SetTrigger("hit");
         }
 
-        lastJump = Time.time;
+        lastHit2 = Time.time;
     }
 
-    IEnumerator AttackSpin()
+    void AttackSpin()
     {
-        if (Time.time - lastSpin < cooldownSpin && lastSpin != 0)
-        {
-            UnityEngine.Debug.Log("WAIT");
-            yield break;
-        }
-
+        if (coolDown(lastHit3, coolDownHit3)) return;
+        
         animator.SetTrigger("spin");
 
-        Collider[] hitEnemies = Physics.OverlapSphere(attackpoint.position, attackRange, enemyLayer);
+        InflictDamage(attackpoint, attackRange, enemyLayer, damageHit3);
 
-        foreach (Collider enemy in hitEnemies)
-        {
-            enemy.GetComponent<ActionEnemy>().TakeDamage(damageSpin);
-            UnityEngine.Debug.Log("Spin hit");
-
-            //enemyAnimator.SetTrigger("hit");
-        }
-        /*UnityEngine.Debug.Log("SPIN");
-        float startTime = 0;
-        while (startTime < 3)
-        {
-            transform.Rotate(new UnityEngine.Vector3(0f, rotSpeed * Time.deltaTime, 0f) * Time.deltaTime);
-            startTime += Time.deltaTime;
-            yield return null;
-
-        }
-        lastHit = Time.time;
-        UnityEngine.Debug.Log("SPIN FINISHED");*/
-
-        lastSpin = Time.time;
-    }
-
-
-    public void TakeDamagePlayer(int damage)
-    {
-        UnityEngine.Debug.Log("We ENTERED TAKEDAMAGEPLAYER");
-        health -= damage;
-
-        UnityEngine.Debug.Log("current health player: " + health);
-
-        if (health <= 0)
-        {
-            StartCoroutine(Die());
-            animator.SetTrigger("die");
-        }
-
-    }
-
-    private IEnumerator Die()
-    {
-
-        animator.SetTrigger("die");
-        UnityEngine.Debug.Log("PLAYER DEAD");
-        yield return null;
-
+        lastHit3 = Time.time;
     }
 
     /*void OnDrawGizmosSelected()

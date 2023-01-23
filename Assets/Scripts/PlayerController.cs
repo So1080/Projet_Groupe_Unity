@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Player
 {
-
-    public float speed;
-
-    private Animator animator;
-    private Rigidbody rb;
 
     void Start()
     {
@@ -20,17 +15,22 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //deplacer le player
-        float horInput = Input.GetAxis("Horizontal");
-        float verInput = Input.GetAxis("Vertical");
+        horInput = Input.GetAxis("Horizontal");
+        verInput = Input.GetAxis("Vertical");
 
-
-        animator.SetFloat("ver_input", verInput);
-        animator.SetFloat("hor_input", horInput);
-        rb.velocity = new Vector3(horInput, 0, verInput).normalized * speed;
+        run();
 
         LookAtMouse();
 
 
+    }
+
+    public void run()
+    {
+
+        animator.SetFloat("ver_input", verInput);
+        animator.SetFloat("hor_input", horInput);
+        rb.velocity = new Vector3(horInput, 0, verInput).normalized * speed;
     }
 
     void LookAtMouse()
