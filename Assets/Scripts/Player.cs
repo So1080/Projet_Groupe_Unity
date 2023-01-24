@@ -7,17 +7,22 @@ public class Player : Character
     protected float lastHit1;
     protected float lastHit2;
     protected float lastHit3;
-    protected int coolDownHit1;
-    protected int coolDownHit2;
-    protected int coolDownHit3;
-    public int damageHit1;
-    public int damageHit2;
-    public int damageHit3;
+    [System.NonSerialized] public int coolDownHit1;
+    [System.NonSerialized] public int coolDownHit2;
+    [System.NonSerialized] public int coolDownHit3;
+    [System.NonSerialized] public int damageHit1;
+    [System.NonSerialized] public int damageHit2;
+    [System.NonSerialized] public int damageHit3;
+    [System.NonSerialized] public bool tookDamage;
+    [System.NonSerialized] public int damages;
 
     //deplacer
     public Rigidbody rb;
     protected float verInput;
     protected float horInput;
+
+
+    [SerializeField] private HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +33,10 @@ public class Player : Character
 
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
+
+        tookDamage = false;
+
+        healthBar.UpdateHealthBar(health, maxHealth);
     }
 
     // Update is called once per frame
@@ -42,32 +51,36 @@ public class Player : Character
         health -= damage;
 
         UnityEngine.Debug.Log("current health player: " + health);
+        tookDamage = true;
+        damages = damage;
+
+        healthBar.UpdateHealthBar(health, maxHealth);
 
         if (health <= 0)
         {
             StartCoroutine(Die());
             animator.SetTrigger("die");
-        }
+        } 
 
     }
 
-    protected void InflictDamage(Transform attackpoint, float attackRange, LayerMask enemyLayer, int damage)
+    public void InflictDamage(Transform attackpoint, float attackRange, LayerMask enemyLayer, int damage)
     {
         Collider[] hitEnemies = Physics.OverlapSphere(attackpoint.position, attackRange, enemyLayer);
 
         foreach (Collider enemy in hitEnemies)
         {
             enemy.GetComponent<NPC>().TakeDamage(damage);
-            UnityEngine.Debug.Log("Spin hit");
+            //UnityEngine.Debug.Log("Spin hit");
         }
     }
 
 
     protected void run(float horInput, float verInput)
     {
-        Debug.Log("run");
+        //Debug.Log("run");
         rb.velocity = new Vector3(horInput, 0, verInput).normalized * speed;
-        Debug.Log(new Vector3(horInput, 0, verInput).normalized * speed);
+        //Debug.Log(new Vector3(horInput, 0, verInput).normalized * speed);
     }
 
     protected void LookAtMouse()
@@ -85,6 +98,18 @@ public class Player : Character
 
         }
 
+
+    }
+
+    public IEnumerator Die()
+    {
+        Debug.Log(gameObject.name);
+        Debug.Log(character.name);
+        animator.SetTrigger("die");
+        Debug.Log("Player DEAD");
+        yield return new WaitForSeconds(3);
+        Destroy(gameObject);
+        yield return null;
 
     }
 

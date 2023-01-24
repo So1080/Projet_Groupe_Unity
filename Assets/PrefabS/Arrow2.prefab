@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4920410806102760720
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5913474836721130086, guid: a8a2e9ebfa3d645eda87fe704bec70dc,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913474836721130086, guid: a8a2e9ebfa3d645eda87fe704bec70dc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.082
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913474836721130086, guid: a8a2e9ebfa3d645eda87fe704bec70dc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.207
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913474836721130086, guid: a8a2e9ebfa3d645eda87fe704bec70dc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.134
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913474836721130086, guid: a8a2e9ebfa3d645eda87fe704bec70dc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.85947734
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913474836721130086, guid: a8a2e9ebfa3d645eda87fe704bec70dc,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5017698
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913474836721130086, guid: a8a2e9ebfa3d645eda87fe704bec70dc,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.06834513
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913474836721130086, guid: a8a2e9ebfa3d645eda87fe704bec70dc,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.06967555
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913474836721130086, guid: a8a2e9ebfa3d645eda87fe704bec70dc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -58.539
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913474836721130086, guid: a8a2e9ebfa3d645eda87fe704bec70dc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -21.043
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913474836721130086, guid: a8a2e9ebfa3d645eda87fe704bec70dc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 21.155
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913474836721130091, guid: a8a2e9ebfa3d645eda87fe704bec70dc,
+        type: 3}
+      propertyPath: m_Name
+      value: Erika_Archer_Eyes_Mesh
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a8a2e9ebfa3d645eda87fe704bec70dc, type: 3}

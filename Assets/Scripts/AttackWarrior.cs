@@ -9,8 +9,10 @@ public class AttackWarrior : Player
 {
     public Transform attackpoint;
     public Transform blastpoint;
+    public Transform spinpoint;
     public float attackRange = 1;
     public float jumpRange = 3;
+    public float spinRange = 5;
 
     //health
 
@@ -54,7 +56,7 @@ public class AttackWarrior : Player
 
         if (coolDown(lastHit1, coolDownHit1)) return;
 
-        UnityEngine.Debug.Log("ATTACK");
+        //UnityEngine.Debug.Log("ATTACK");
         animator.SetTrigger("Attack");
 
         InflictDamage(attackpoint, attackRange, enemyLayer, damageHit1);
@@ -67,7 +69,7 @@ public class AttackWarrior : Player
 
         if (coolDown(lastHit2, coolDownHit2)) return;
 
-        UnityEngine.Debug.Log("JUMP");
+        //UnityEngine.Debug.Log("JUMP");
         animator.SetTrigger("Jump");
 
         InflictDamage(attackpoint, attackRange, enemyLayer, damageHit2);
@@ -92,7 +94,7 @@ public class AttackWarrior : Player
         
         animator.SetTrigger("spin");
 
-        InflictDamage(attackpoint, attackRange, enemyLayer, damageHit3);
+        InflictDamage(spinpoint, spinRange, enemyLayer, damageHit3);
 
         lastHit3 = Time.time;
     }
@@ -106,14 +108,14 @@ public class AttackWarrior : Player
         Gizmos.DrawSphere(attackpoint.position, attackRange);
     }*/
 
-    void OnDrawGizmosSelected()
+    /*void OnDrawGizmosSelected()
     {
-        if (blastpoint == null)
+        if (spinpoint == null)
         {
             return;
         }
-        Gizmos.DrawSphere(blastpoint.position, jumpRange);
-    }
+        Gizmos.DrawSphere(spinpoint.position, spinRange);
+    }*/
 
 
 }  
