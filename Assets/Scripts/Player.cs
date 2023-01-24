@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : Character
 {
@@ -107,8 +108,7 @@ public class Player : Character
         Debug.Log(character.name);
         animator.SetTrigger("die");
         Debug.Log("Player DEAD");
-        yield return new WaitForSeconds(3);
-        Destroy(gameObject);
+        SceneManager.LoadScene("LoseMenu");
         yield return null;
 
     }
