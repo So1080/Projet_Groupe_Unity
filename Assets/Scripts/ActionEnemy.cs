@@ -38,7 +38,7 @@ public class ActionEnemy : NPC
     {
 
         if (coolDown(lastHit, cooldown)) return; 
-        UnityEngine.Debug.Log("ATTACK");
+        //UnityEngine.Debug.Log("ATTACK");
         animator.SetTrigger("soldier");
 
         InflictDamage(attackPoint, attackRange, enemyLayer, hitPoints);
@@ -53,12 +53,12 @@ public class ActionEnemy : NPC
 
     IEnumerator PushBackCo()
     {
-        Debug.Log("WAIT A SECOND");
+        //Debug.Log("WAIT A SECOND");
         yield return new WaitForSeconds(1);
         transform.Translate(UnityEngine.Vector3.forward * speed * Time.deltaTime);
-        Debug.Log("PUSH");
+        //Debug.Log("PUSH");
 
-        Debug.Log("current health: " + health);
+        //Debug.Log("current health: " + health);
         yield return null;
     }
 

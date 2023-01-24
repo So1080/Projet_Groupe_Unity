@@ -6,8 +6,8 @@ public class Character : MonoBehaviour
 {
     public GameObject character;
     public Animator animator;
-    protected int maxHealth;
-    protected int health;
+    [System.NonSerialized] public int maxHealth;
+    [System.NonSerialized] public int health;
     public LayerMask enemyLayer;
     public int speed;
 
@@ -18,20 +18,7 @@ public class Character : MonoBehaviour
         animator = GetComponent<Animator>();
         //health = maxHealth;
     }
-  
-
-
-    public IEnumerator Die()
-    {
-        Debug.Log(gameObject.name);
-        Debug.Log(character.name);
-        animator.SetTrigger("die");
-        Debug.Log("Enemy DEAD"); 
-        yield return new WaitForSeconds(3);
-        Destroy(gameObject);
-        yield return null;
-
-    }
+ 
 
     public bool coolDown(float last, int coolDown)
     {
