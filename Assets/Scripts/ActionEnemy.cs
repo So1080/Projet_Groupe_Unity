@@ -23,18 +23,8 @@ public class ActionEnemy : NPC
         health = maxHealth;
         
     }
-    
-    void Update()
-    {
-        FollowPlayer();
 
-
-        if ((health > 0) && ((transform.position - player.transform.position).magnitude <= agent.stoppingDistance))
-        {
-            AttackSword();
-        }
-    }
-    void AttackSword()
+    public override void Attack()
     {
 
         if (coolDown(lastHit, cooldown)) return; 

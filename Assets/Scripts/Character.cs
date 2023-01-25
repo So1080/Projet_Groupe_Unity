@@ -18,13 +18,22 @@ public class Character : MonoBehaviour
         animator = GetComponent<Animator>();
         //health = maxHealth;
     }
+
+    public bool isAlive()
+    {
+        if (this.health == 0)
+        {
+            return false;
+        }
+        return true;
+    }
  
 
     public bool coolDown(float last, int coolDown)
     {
         if (Time.time - last < coolDown && last != 0)
         {
-            UnityEngine.Debug.Log("WAIT");
+            //UnityEngine.Debug.Log("WAIT");
             return true;
         }
         return false;

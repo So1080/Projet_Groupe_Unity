@@ -4,7 +4,7 @@ using System.Numerics;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NPC : Character
+public abstract class NPC : Character
 {
     protected int hitpoints;
     public GameObject player;
@@ -25,7 +25,7 @@ public class NPC : Character
     // Start is called before the first frame update
     void Start() 
     {
-        if (!agent) agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
         if (!animator) animator = GetComponentInChildren<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
@@ -38,8 +38,16 @@ public class NPC : Character
     // Update is called once per frame
     void Update()
     {
-        
+        FollowPlayer();
+
+
+        if ((health > 0) && ((transform.position - player.transform.position).magnitude <= agent.stoppingDistance))
+        {
+            Attack();
+        }
     }
+
+    public abstract void Attack();
 
     protected void FollowPlayer()
     {
@@ -86,7 +94,7 @@ public class NPC : Character
     {
         Debug.Log("WAIT A SECOND");
         yield return new WaitForSeconds(1);
-        transform.Translate(UnityEngine.Vector3.forward * speedBlast * Time.deltaTime);
+        transform.Translate(UnityEngine.Vector3.back * speedBlast * Time.deltaTime);
         Debug.Log("PUSH");
 
         Debug.Log("current health: " + health);
@@ -100,7 +108,7 @@ public class NPC : Character
         foreach (Collider enemy in hitEnemies)
         {
             enemy.GetComponent<Player>().TakeDamage(damage);
-            UnityEngine.Debug.Log("Spin hit");
+            //UnityEngine.Debug.Log("Spin hit");
         }
     }
 
