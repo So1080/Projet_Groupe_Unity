@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Random=UnityEngine.Random;
+
+
 
 
 public class MainMenuController : MonoBehaviour
@@ -20,7 +23,17 @@ public class MainMenuController : MonoBehaviour
     
     
     [Header("Lancement de Jeu")] 
-    public string _lancerJeu;
+    private string _lancerJeu;
+
+    private List<string> Arenas = new List<string>()
+    {
+        "Arena1",
+        "Solyane"                   
+    };
+
+    public GameObject Character1;
+    public GameObject Character2;
+    public GameObject Character3;
 
 
 
@@ -66,7 +79,25 @@ public class MainMenuController : MonoBehaviour
 
     public void LancerJeu()
     {
-        SceneManager.LoadScene(_lancerJeu);
+        int randomIndex = Random.Range(0, Arenas.Count);
+        _lancerJeu = Arenas[randomIndex];
+        
+        
+        if (Character1.activeSelf)
+        {
+            SceneManager.LoadScene(_lancerJeu);
+            // GameObject Character.Setactive()
+        }
+        
+        if (Character2.activeSelf)
+        {
+            SceneManager.LoadScene(_lancerJeu);
+        }
+        
+        if (Character3.activeSelf)
+        {
+            SceneManager.LoadScene(_lancerJeu);
+        }
     }
 
 

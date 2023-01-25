@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Scene_choix_persos.unity
     guid: cb96ce8f057cc41a98c7d86b1ce9e353
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/CharacterMenu.unity
+    guid: 29b82c1da2afd411cad5345a438077dc
+  - enabled: 1
+    path: Assets/Scenes/Solyane.unity
+    guid: 285c192cf151746c2b3d01a8999e0995
   m_configObjects: {}
