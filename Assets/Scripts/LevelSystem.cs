@@ -34,7 +34,7 @@ public class LevelSystem : MonoBehaviour
         current_level = 0;
         requiered_xp = 5;
 
-        UI = GameObject.Find("NewLevel");
+        //UI = GameObject.Find("NewLevel");
 
 
 

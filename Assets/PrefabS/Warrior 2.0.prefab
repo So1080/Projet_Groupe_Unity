@@ -45,11 +45,11 @@ PrefabInstance:
       objectReference: {fileID: 45657118173650299}
     - target: {fileID: 1186832826, guid: 1403c4e0e193f451ba5834bc7911e26e, type: 3}
       propertyPath: attackRange
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1186832828, guid: 1403c4e0e193f451ba5834bc7911e26e, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1186832829, guid: 1403c4e0e193f451ba5834bc7911e26e, type: 3}
       propertyPath: m_Constraints
@@ -111,7 +111,7 @@ PrefabInstance:
     - target: {fileID: 540046162545106384, guid: 1403c4e0e193f451ba5834bc7911e26e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.5322905
       objectReference: {fileID: 0}
     - target: {fileID: 540046162545106384, guid: 1403c4e0e193f451ba5834bc7911e26e,
         type: 3}
@@ -121,7 +121,7 @@ PrefabInstance:
     - target: {fileID: 540046162545106384, guid: 1403c4e0e193f451ba5834bc7911e26e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 4.201096
       objectReference: {fileID: 0}
     - target: {fileID: 540046162545106384, guid: 1403c4e0e193f451ba5834bc7911e26e,
         type: 3}

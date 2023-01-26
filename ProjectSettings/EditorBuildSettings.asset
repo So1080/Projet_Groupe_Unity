@@ -5,9 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 8a52c69f3e1d5448d9c529dfc8fabfc0
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Sarah Scene design.unity
     guid: bda6f5760e9394d20af88212f541d65e
@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Arena1.unity
     guid: f45a18df30d794823962fc5a461aa7cf
+  - enabled: 1
+    path: Assets/Scenes/LoseMenu.unity
+    guid: 047c37ed8ef05483ebd03cf5f84c8c4f
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 0ad8c0abe82ef4050b9878b536b3e27c
   m_configObjects: {}

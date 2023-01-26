@@ -26,32 +26,12 @@ public class AttackWarrior : Player
         coolDownHit3 = 5;
         damageHit1 = 5;
         damageHit2 = 2;
-        damageHit3 = 1;
+        damageHit3 = 10;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (health > 0)
-        {
-            if (Input.GetKeyDown(KeyCode.Space)) AttackSword();
-           
-            if (Input.GetKeyDown(KeyCode.J)) AttackJump();
 
-            if (Input.GetKeyDown(KeyCode.S)) AttackSpin();
-
-            horInput = Input.GetAxis("Horizontal");
-            verInput = Input.GetAxis("Vertical");
-            animator.SetFloat("ver_input", verInput);
-            animator.SetFloat("hor_input", horInput);
-
-            run(horInput, verInput);
-
-            LookAtMouse();
-        }
-    }
-
-    void AttackSword()
+    public override void Attack1()
     {
 
         if (coolDown(lastHit1, coolDownHit1)) return;
@@ -64,7 +44,7 @@ public class AttackWarrior : Player
         lastHit1 = Time.time;
     }
 
-    void AttackJump()
+    public override void Attack2()
     {
 
         if (coolDown(lastHit2, coolDownHit2)) return;
@@ -88,7 +68,7 @@ public class AttackWarrior : Player
         lastHit2 = Time.time;
     }
 
-    void AttackSpin()
+    public override void Attack3()
     {
         if (coolDown(lastHit3, coolDownHit3)) return;
         

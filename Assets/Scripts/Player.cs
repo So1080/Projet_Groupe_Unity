@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Player : Character
+public abstract class Player : Character
 {
     protected float lastHit1;
     protected float lastHit2;
@@ -39,18 +40,39 @@ public class Player : Character
         healthBar.UpdateHealthBar(health, maxHealth);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (health > 0)
+        {
+            if (Input.GetKeyDown(KeyCode.Space)) Attack1();
+
+            if (Input.GetKeyDown(KeyCode.J)) Attack2();
+
+            if (Input.GetKeyDown(KeyCode.K)) Attack3();
+
+            horInput = Input.GetAxis("Horizontal");
+            verInput = Input.GetAxis("Vertical");
+            //animator.SetFloat("ver_input", verInput);
+            //animator.SetFloat("hor_input", horInput);
+
+            run(horInput, verInput);
+
+            LookAtMouse();
+        }
     }
+
+    public abstract void Attack1();
+
+    public abstract void Attack2();
+
+    public abstract void Attack3();
 
     public void TakeDamage(int damage)
     {
-        UnityEngine.Debug.Log("We ENTERED TAKEDAMAGEPLAYER");
+        //UnityEngine.Debug.Log("We ENTERED TAKEDAMAGEPLAYER");
         health -= damage;
 
-        UnityEngine.Debug.Log("current health player: " + health);
+        //UnityEngine.Debug.Log("current health player: " + health);
         tookDamage = true;
         damages = damage;
 
@@ -78,7 +100,6 @@ public class Player : Character
 
     protected void run(float horInput, float verInput)
     {
-        //Debug.Log("run");
         rb.velocity = new Vector3(horInput, 0, verInput).normalized * speed;
         //Debug.Log(new Vector3(horInput, 0, verInput).normalized * speed);
     }
@@ -107,8 +128,7 @@ public class Player : Character
         Debug.Log(character.name);
         animator.SetTrigger("die");
         Debug.Log("Player DEAD");
-        yield return new WaitForSeconds(3);
-        Destroy(gameObject);
+        SceneManager.LoadScene("LoseMenu");
         yield return null;
 
     }

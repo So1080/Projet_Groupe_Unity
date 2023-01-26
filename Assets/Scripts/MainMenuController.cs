@@ -99,6 +99,11 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
+    public void RetourMenu()
+    {
+        SceneManager.LoadScene("MainMenu") ;
+    }
+
 
     public void ExitButton()
     {

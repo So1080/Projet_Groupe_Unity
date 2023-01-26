@@ -25,7 +25,22 @@ public class Timer : MonoBehaviour
         currentTime = countDown ? currentTime -= Time.deltaTime : currentTime += Time.deltaTime;
         timerMinute = currentTime/60;
         timerSeconds = currentTime % 60;
-        timertext.text = timerMinute.ToString("0") + ":" + timerSeconds.ToString("0");
 
+        if ( timerMinute < 10 && timerSeconds < 10)
+        {
+            timertext.text = "Timer: 0" + timerMinute.ToString("0") + ":0" + timerSeconds.ToString("0");
+        }
+        if (timerMinute < 10 && timerSeconds > 10)
+        {
+            timertext.text = "Timer: 0" + timerMinute.ToString("0") + ":" + timerSeconds.ToString("0");
+        }
+        if (timerMinute > 10 && timerSeconds < 10)
+        {
+            timertext.text = "Timer: " + timerMinute.ToString("0") + ":0" + timerSeconds.ToString("0");
+        }
+        if (timerMinute > 10 && timerSeconds > 10)
+        {
+            timertext.text = "Timer: " + timerMinute.ToString("0") + ":" + timerSeconds.ToString("0");
+        }
     }
 }
