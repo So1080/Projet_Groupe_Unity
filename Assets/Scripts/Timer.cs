@@ -25,7 +25,7 @@ public class Timer : MonoBehaviour
         currentTime = countDown ? currentTime -= Time.deltaTime : currentTime += Time.deltaTime;
         timerMinute = currentTime/60;
         timerSeconds = currentTime % 60;
-        timertext.text = "timerMinute.ToString("0") + ":" + timerSeconds.ToString("0");
+        timertext.text = timerMinute.ToString("0") + ":" + timerSeconds.ToString("0");
 
     }
 }
