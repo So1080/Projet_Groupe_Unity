@@ -22,6 +22,8 @@ public abstract class Player : Character
     protected float verInput;
     protected float horInput;
 
+    [SerializeField] private bool invincible;
+
 
     [SerializeField] private HealthBar healthBar;
 
@@ -38,10 +40,17 @@ public abstract class Player : Character
         tookDamage = false;
 
         healthBar.UpdateHealthBar(health, maxHealth);
+
+        invincible = false;
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            invincible = !invincible;
+        }
+
         if (health > 0)
         {
             if (Input.GetKeyDown(KeyCode.Space)) Attack1();
@@ -52,8 +61,8 @@ public abstract class Player : Character
 
             horInput = Input.GetAxis("Horizontal");
             verInput = Input.GetAxis("Vertical");
-            //animator.SetFloat("ver_input", verInput);
-            //animator.SetFloat("hor_input", horInput);
+            animator.SetFloat("ver_input", verInput);
+            animator.SetFloat("hor_input", horInput);
 
             run(horInput, verInput);
 
@@ -69,20 +78,24 @@ public abstract class Player : Character
 
     public void TakeDamage(int damage)
     {
-        //UnityEngine.Debug.Log("We ENTERED TAKEDAMAGEPLAYER");
-        health -= damage;
-
-        //UnityEngine.Debug.Log("current health player: " + health);
-        tookDamage = true;
-        damages = damage;
-
-        healthBar.UpdateHealthBar(health, maxHealth);
-
-        if (health <= 0)
+        if (!invincible)
         {
-            StartCoroutine(Die());
-            animator.SetTrigger("die");
-        } 
+            UnityEngine.Debug.Log("We ENTERED TAKEDAMAGEPLAYER" + damage);
+            health -= damage;
+
+            UnityEngine.Debug.Log("current health player: " + health);
+            tookDamage = true;
+            damages = damage;
+
+            healthBar.UpdateHealthBar(health, maxHealth);
+
+            if (health <= 0)
+            {
+                StartCoroutine(Die());
+                animator.SetTrigger("die");
+            }
+        }
+        
 
     }
 

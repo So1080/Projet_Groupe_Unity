@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class Archer : NPC
 {
-    public GameObject arrowPrefab; // drag the arrow prefab in the inspector 
-    public Transform arrowSpawnPoint; // drag the spawn point in the inspector 
-    public float fireRate = 4.0f; // time in seconds between arrow shots
+    public GameObject arrowPrefab; 
+    public Transform arrowSpawnPoint; 
+    public float fireRate = 4.0f; 
     public float nextFire;
     public float speedArrow;
-    public float stoppingDistance=100;
 
     // Start is called before the first frame update
     void Start()
     {
-        health = 30;
+        health = 5;
         maxHealth = health;
+        //Solyane
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -23,10 +24,10 @@ public class Archer : NPC
 
     public override void Attack()
     {
-        if (Time.time > nextFire) // check if enough time has passed since the last shot
+        if (Time.time > nextFire) 
         {
-            nextFire = Time.time + fireRate; // set the time for the next arrow shot
-            StartCoroutine(ShootArrow()); // call the function to shoot an arrow
+            nextFire = Time.time + fireRate; 
+            StartCoroutine(ShootArrow()); 
         }
     }
 

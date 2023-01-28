@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
@@ -8,6 +9,12 @@ using UnityEngine.AI;
 public class AttackWarrior : Player
 {
     public Transform attackpoint;
+
+    public static explicit operator AttackWarrior(GameObject v)
+    {
+        throw new NotImplementedException();
+    }
+
     public Transform blastpoint;
     public Transform spinpoint;
     public float attackRange = 1;
@@ -19,7 +26,7 @@ public class AttackWarrior : Player
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = 100;
+        maxHealth = 80;
         health = maxHealth;
         coolDownHit1 = 1;
         coolDownHit2 = 5;

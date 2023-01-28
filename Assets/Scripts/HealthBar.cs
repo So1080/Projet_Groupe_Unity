@@ -8,6 +8,13 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Image healthBar;
     public Camera cam;
 
+    private void Start()
+    {
+        //Solyane
+        cam = (Camera) GetComponent("MainCamera");
+
+    }
+
     public void UpdateHealthBar(int health, int healthMax)
     {
         float hlt = (float)health;

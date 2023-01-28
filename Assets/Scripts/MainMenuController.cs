@@ -25,10 +25,25 @@ public class MainMenuController : MonoBehaviour
     [Header("Lancement de Jeu")] 
     private string _lancerJeu;
 
-    private List<string> Arenas = new List<string>()
+    private List<string> ArenasTank = new List<string>()
     {
-        "Arena1",
-        "Sarah Scene design"                   
+        "Arena1Tank",
+        "NewArenaTank",
+        "Sarah Scene Tank"                   
+    };
+
+    private List<string> ArenasWarrior = new List<string>()
+    {
+        "Arena1Warrior",
+        "NewArenaWarrior",
+        "Sarah Scene Warrior"
+    };
+
+    private List<string> ArenasArcher = new List<string>()
+    {
+        "Arena1Archer",
+        "NewArenaArcher",
+        "Sarah Scene Archer"
     };
 
     public GameObject Character1;
@@ -79,22 +94,26 @@ public class MainMenuController : MonoBehaviour
 
     public void LancerJeu()
     {
-        int randomIndex = Random.Range(0, Arenas.Count);
-        _lancerJeu = Arenas[randomIndex];
-        
         
         if (Character1.activeSelf)
         {
+
+            int randomIndex = Random.Range(0, ArenasWarrior.Count);
+            _lancerJeu = ArenasWarrior[randomIndex];
             SceneManager.LoadScene(_lancerJeu);
         }
         
         if (Character2.activeSelf)
         {
+            int randomIndex = Random.Range(0, ArenasArcher.Count);
+            _lancerJeu = ArenasArcher[randomIndex];
             SceneManager.LoadScene(_lancerJeu);
         }
         
         if (Character3.activeSelf)
         {
+            int randomIndex = Random.Range(0, ArenasTank.Count);
+            _lancerJeu = ArenasTank[randomIndex];
             SceneManager.LoadScene(_lancerJeu);
         }
     }

@@ -7,6 +7,11 @@ public class UpgradeMenu : MonoBehaviour
 
     [SerializeField] private AttackWarrior player;
 
+    private void Start()
+    {
+
+    }
+
 
 
     //augmenter la vitesse du joueur

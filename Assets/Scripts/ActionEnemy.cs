@@ -19,9 +19,12 @@ public class ActionEnemy : NPC
     
     void Start()
     {
-        maxHealth = 20;
+        maxHealth = 10;
         health = maxHealth;
-        
+
+        //Solyane
+        player = GameObject.FindGameObjectWithTag("Player");
+
     }
 
     public override void Attack()

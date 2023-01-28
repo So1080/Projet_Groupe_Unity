@@ -14,7 +14,7 @@ public class Arrow : MonoBehaviour
     void Start()
     {
         //Physics.IgnoreLayerCollision(arrowLayer, enemyLayer);
-        hitPoint = 1;
+        hitPoint = 5;
     }
 
     // Update is called once per frame

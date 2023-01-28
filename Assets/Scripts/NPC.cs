@@ -19,6 +19,10 @@ public abstract class NPC : Character
     private GameObject xpDie;
 
 
+    //Solyane
+    public bool attacking;
+
+
     //healthbar
     [SerializeField] private HealthBar healthBar;
 
@@ -33,6 +37,8 @@ public abstract class NPC : Character
         visionRange = 100;
 
         healthBar.UpdateHealthBar(health, maxHealth);
+
+        attacking = false;
     }
 
     // Update is called once per frame
@@ -41,10 +47,14 @@ public abstract class NPC : Character
         FollowPlayer();
 
 
-        if ((health > 0) && ((transform.position - player.transform.position).magnitude <= agent.stoppingDistance))
+        if ((health > 0) && ((transform.position - player.transform.position).magnitude <= agent.stoppingDistance) && !(attacking))
         {
+            //UnityEngine.Debug.Log("ATTACKing");
             Attack();
+            attacking = false;
+
         }
+        
     }
 
     public abstract void Attack();
@@ -61,6 +71,7 @@ public abstract class NPC : Character
             if (UnityEngine.Vector3.Distance(transform.position, player.transform.position) > visionRange) return;
             agent.SetDestination(player.transform.position);
             animator.SetFloat("ForwardSpeed", agent.velocity.magnitude / agent.speed);
+            Debug.Log("move  " + transform.position);
 
         }
         transform.rotation = UnityEngine.Quaternion.LookRotation(player.transform.position - transform.position);
@@ -70,7 +81,7 @@ public abstract class NPC : Character
     {
         health -= damage;
 
-        Debug.Log("current health ENEMY: " + health);
+        //Debug.Log("current health ENEMY: " + health);
 
         healthBar.UpdateHealthBar(health, maxHealth);
         if (health <= 0)
@@ -92,12 +103,12 @@ public abstract class NPC : Character
 
     IEnumerator PushBackCo()
     {
-        Debug.Log("WAIT A SECOND");
+        //Debug.Log("WAIT A SECOND");
         yield return new WaitForSeconds(1);
         transform.Translate(UnityEngine.Vector3.back * speedBlast * Time.deltaTime);
-        Debug.Log("PUSH");
+        //Debug.Log("PUSH");
 
-        Debug.Log("current health: " + health);
+        //Debug.Log("current health: " + health);
         yield return null;
     }
 
@@ -108,20 +119,20 @@ public abstract class NPC : Character
         foreach (Collider enemy in hitEnemies)
         {
             enemy.GetComponent<Player>().TakeDamage(damage);
-            //UnityEngine.Debug.Log("Spin hit");
+            UnityEngine.Debug.Log("Spin hit");
         }
     }
 
     public IEnumerator Die()
     {
-        Debug.Log(gameObject.name);
-        Debug.Log(character.name);
+        //Debug.Log(gameObject.name);
+        //Debug.Log(character.name);
         animator.SetTrigger("die");
-        Debug.Log("Enemy DEAD");
+        //Debug.Log("Enemy DEAD");
         yield return new WaitForSeconds(1);
         xp_pos = transform.position;
         Instantiate(xp, xp_pos, UnityEngine.Quaternion.identity);
-        Debug.Log(xp);
+        //Debug.Log(xp);
         Destroy(gameObject);
         yield return null;
 
